@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoteSphere ✦ Next-Gen Voting</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- BG LAYERS -->
+<div id="bg-home" class="page-bg active"></div>
+<div id="bg-vote" class="page-bg inactive"></div>
+<div id="bg-results" class="page-bg inactive"></div>
+<div id="bg-admin" class="page-bg inactive"></div>
+<div id="bg-analytics" class="page-bg inactive"></div>
+<div id="bg-wallpaper" class="page-bg inactive"></div>
+
+<div class="bg-orbs">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="orb orb4"></div>
+  <div class="orb orb5"></div>
+</div>
+<canvas id="particles"></canvas>
+
+<div class="shell">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">✦ VoteSphere</div>
+    <div id="live-ticker"><span class="pulse-dot"></span><span id="ticker-text">1,247 votes cast today</span></div>
+    <div class="nav-links">
+      <button class="active" onclick="showPage('home')">🏠 Dashboard</button>
+      <button onclick="showPage('vote')">🗳️ Vote <span class="nav-badge" id="active-count">3</span></button>
+      <button onclick="showPage('results')">📊 Results</button>
+      <button onclick="showPage('admin')">⚙️ Admin</button>
+      <button onclick="showPage('analytics')">📈 Analytics</button>
+      <button onclick="showPage('wallpaper')">🎨 Themes</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════ HOME PAGE ════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="float-particles" id="hero-particles"></div>
+    <div class="hero-chip">✦ Secure · Transparent · Democratic</div>
+    <h1>The Future of<br><span class="grad" id="hero-typewrite">Democratic Voting</span></h1>
+    <p>A powerful multi-election platform with ranked choice, approval, and plurality voting. Real-time results, full anonymity, and complete customization.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary shine" onclick="showPage('vote')">🗳️ Cast Your Vote</button>
+      <button class="btn btn-ghost" onclick="showPage('results')">📊 View Results</button>
+      <button class="btn btn-cyan" onclick="showPage('admin')">⚙️ Admin Panel</button>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card" style="--accent-color:linear-gradient(90deg,#7c3aed,#a78bfa);--accent-glow:rgba(124,58,237,0.1);">
+      <div class="stat-label">Total Votes Cast</div>
+      <div class="stat-value" id="stat-total" style="background:linear-gradient(135deg,#a78bfa,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">0</div>
+      <div class="stat-sub">↑ 14.3% from last session</div>
+    </div>
+    <div class="stat-card" style="--accent-color:linear-gradient(90deg,#06b6d4,#10b981);--accent-glow:rgba(6,182,212,0.1);">
+      <div class="stat-label">Active Elections</div>
+      <div class="stat-value" id="stat-active" style="background:linear-gradient(135deg,#06b6d4,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">3</div>
+      <div class="stat-sub">2 closing today</div>
+    </div>
+    <div class="stat-card" style="--accent-color:linear-gradient(90deg,#f59e0b,#f97316);--accent-glow:rgba(245,158,11,0.1);">
+      <div class="stat-label">Registered Voters</div>
+      <div class="stat-value" id="stat-voters" style="background:linear-gradient(135deg,#f59e0b,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">0</div>
+      <div class="stat-sub">Across all elections</div>
+    </div>
+    <div class="stat-card" style="--accent-color:linear-gradient(90deg,#10b981,#84cc16);--accent-glow:rgba(16,185,129,0.1);">
+      <div class="stat-label">Turnout Rate</div>
+      <div class="stat-value" id="stat-turnout" style="background:linear-gradient(135deg,#10b981,#84cc16);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">0%</div>
+      <div class="stat-sub">Target: 75%</div>
+    </div>
+    <div class="stat-card" style="--accent-color:linear-gradient(90deg,#ec4899,#f43f5e);--accent-glow:rgba(236,72,153,0.1);">
+      <div class="stat-label">Candidates</div>
+      <div class="stat-value" id="stat-candidates" style="background:linear-gradient(135deg,#ec4899,#f43f5e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">0</div>
+      <div class="stat-sub">Across all elections</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Active <span>Elections</span></div>
+      <button class="btn btn-ghost btn-sm" onclick="showPage('admin')">✚ Create Election</button>
+    </div>
+    <div class="elections-grid" id="elections-grid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="section-title">Election <span>Timeline</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div><div class="timeline" id="timeline"></div></div>
+      <div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:22px;padding:1.75rem;backdrop-filter:blur(12px);">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1.25rem;color:var(--accent2);">⏳ Time Remaining</div>
+          <div id="countdown-title" style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem;">Presidential Election closes in:</div>
+          <div class="countdown" id="countdown"></div>
+          <div style="font-size:0.8rem;color:var(--muted);text-align:center;">Cast your vote before time runs out!</div>
+          <button class="btn btn-primary shine" style="width:100%;justify-content:center;margin-top:1rem;" onclick="showPage('vote')">Vote Now →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ VOTE PAGE ════════════ -->
+<div class="page" id="page-vote">
+  <div class="vote-hero">
+    <div class="vote-hero-inner">
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div style="flex:1">
+          <div class="vote-type-tag" id="vote-type-tag">🗳️ Plurality Voting</div>
+          <div class="vote-title" id="vote-election-title">Presidential Election 2024</div>
+          <div class="vote-meta-row">
+            <span class="vote-meta-item">👥 <span id="vote-registered">500 registered voters</span></span>
+            <span class="vote-meta-item">📊 <span id="vote-cast-count">247 votes cast</span></span>
+            <span class="vote-meta-item">⏱️ <span id="vote-deadline">Closes: Dec 31, 2024</span></span>
+          </div>
+        </div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <div class="tabs" id="election-selector"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vote-layout">
+    <div>
+      <div style="margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <div id="vote-instructions" style="font-size:0.85rem;color:var(--muted);background:rgba(255,255,255,0.04);padding:8px 16px;border-radius:10px;border:1px solid var(--border);">
+          ℹ️ Select one candidate to cast your vote
+        </div>
+        <div class="search-wrap" style="margin-left:auto;">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="form-input search-input" placeholder="Search candidates..." id="candidate-search" oninput="filterCandidates()" style="margin:0;width:220px;padding:0.55rem 1rem 0.55rem 2.5rem;">
+        </div>
+      </div>
+      <div class="candidates-grid" id="candidates-grid"></div>
+      <div id="approval-note" style="display:none;background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.25);border-radius:14px;padding:1rem 1.25rem;margin-top:1rem;font-size:0.85rem;color:var(--muted);">
+        ✅ <strong style="color:var(--text)">Approval Voting:</strong> Select all candidates you approve of. You can choose multiple.
+      </div>
+    </div>
+
+    <div>
+      <div class="vote-panel vote-panel-glow" id="vote-panel">
+        <div class="vote-panel-title">🗳️ Your Ballot</div>
+        <div id="vote-summary">
+          <div style="text-align:center;color:var(--muted);font-size:0.85rem;padding:1.5rem 0;">No selection yet.<br>Click a candidate to vote.</div>
+        </div>
+        <button class="btn btn-primary shine" id="submit-vote-btn" style="width:100%;justify-content:center;margin-top:1rem;" onclick="openVoteModal()" disabled>
+          Submit Vote
+        </button>
+        <div style="text-align:center;font-size:0.73rem;color:var(--muted);margin-top:0.75rem;">🔒 Your vote is anonymous & encrypted</div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:22px;padding:1.25rem;margin-top:1rem;backdrop-filter:blur(12px);">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--muted);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">🏅 Live Leaderboard</div>
+        <div id="live-leaderboard"></div>
+      </div>
+
+      <div style="background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.2);border-radius:22px;padding:1.25rem;margin-top:1rem;backdrop-filter:blur(12px);">
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--cyan);margin-bottom:0.75rem;">🔗 Share This Vote</div>
+        <button class="btn btn-cyan btn-sm" style="width:100%;justify-content:center;" onclick="generateShareLink()">Generate Share Link</button>
+        <div id="share-link-out" style="display:none;margin-top:0.75rem;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ RESULTS PAGE ════════════ -->
+<div class="page" id="page-results">
+  <div class="results-container">
+    <div class="results-header">
+      <div class="results-title">📊 Election Results</div>
+      <p style="color:var(--muted);">Live results updated in real-time. Search by Election ID below.</p>
+    </div>
+
+    <!-- ELECTION ID SEARCH -->
+    <div class="search-results-section" style="max-width:600px;margin:0 auto 2rem;">
+      <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;">
+        <div class="search-wrap" style="flex:1;min-width:220px;">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="form-input search-input" placeholder="Search by Election ID (e.g. e1) or title..." id="election-id-search" oninput="searchElectionResults()" style="margin:0;padding:0.7rem 1rem 0.7rem 2.5rem;width:100%;">
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="searchElectionResults()" id="search-results-btn">🔍 Search</button>
+        <button class="btn btn-ghost btn-sm" onclick="clearResultsSearch()" id="clear-search-btn">✕ Clear</button>
+      </div>
+      <div id="search-results-feedback" style="font-size:0.82rem;color:var(--muted);margin-top:0.75rem;display:none;"></div>
+    </div>
+
+    <div class="tabs" id="results-tabs" style="margin:0 auto 2rem;display:flex;justify-content:center;flex-wrap:wrap;"></div>
+    <div id="winner-section"></div>
+    <div id="results-list"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;">
+      <div class="admin-card">
+        <div class="admin-card-title">📈 Vote Distribution</div>
+        <div class="chart-wrap"><div class="chart-bars" id="results-chart"></div></div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-title">📋 Election Statistics</div>
+        <div id="election-stats-list"></div>
+      </div>
+    </div>
+
+    <!-- VOTE LOG TABLE (visible after search) -->
+    <div class="admin-card" id="vote-log-section" style="margin-top:2rem;display:none;">
+      <div class="admin-card-title">📝 Vote Log — Voter Details</div>
+      <div style="overflow-x:auto;">
+        <table class="voter-table" id="vote-log-table">
+          <thead>
+            <tr><th>#</th><th>Voter ID</th><th>Voter Name</th><th>Email</th><th>Voted For</th><th>Timestamp</th></tr>
+          </thead>
+          <tbody id="vote-log-tbody"></tbody>
+        </table>
+      </div>
+      <div id="vote-log-empty" style="text-align:center;color:var(--muted);padding:1.5rem;display:none;">No votes recorded yet for this election.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ ADMIN PAGE ════════════ -->
+<div class="page" id="page-admin">
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <div class="section-title">⚙️ Admin <span>Control Panel</span></div>
+    </div>
+
+    <div class="link-gen-section shine" style="margin-bottom:2rem;" id="admin-link-gen">
+      <div class="link-gen-title">🔗 Voting Link Generator</div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.25rem;">Generate a shareable link for any election so participants can vote directly.</p>
+      <div class="link-gen-row">
+        <div class="link-gen-controls">
+          <label>Select Election</label>
+          <select class="form-input" id="link-gen-election" style="margin:0;"></select>
+        </div>
+        <div class="link-gen-controls">
+          <label>Expiry</label>
+          <select class="form-input" id="link-expiry" style="margin:0;">
+            <option>No expiry</option>
+            <option>24 hours</option>
+            <option>7 days</option>
+            <option>30 days</option>
+            <option>Custom date</option>
+          </select>
+        </div>
+        <div class="link-gen-controls">
+          <label>Access</label>
+          <select class="form-input" id="link-access" style="margin:0;">
+            <option>Public (anyone with link)</option>
+            <option>Registered voters only</option>
+            <option>Password protected</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:flex-end;padding-bottom:0;">
+          <button class="btn btn-primary btn-sm" onclick="generateVoteLink()">🔗 Generate Link</button>
+          <button class="btn btn-cyan btn-sm" onclick="generateQR()">📱 QR Code</button>
+        </div>
+      </div>
+      <div id="link-output" style="display:none;" class="link-output">
+        <div class="link-url" id="link-url-text"></div>
+        <button class="btn btn-ghost btn-xs" onclick="copyLink()">📋 Copy</button>
+        <button class="btn btn-ghost btn-xs" onclick="shareLink()">📤 Share</button>
+        <div class="link-qr" id="link-qr">📷</div>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <div class="admin-card">
+        <div class="admin-card-title">🏛️ Create / Edit Election</div>
+        <label class="form-label">Election Title</label>
+        <input type="text" class="form-input" id="admin-title" placeholder="e.g. Student Council President" value="Presidential Election 2024">
+        <label class="form-label">Election Type</label>
+        <select class="form-input" id="admin-type">
+          <option value="plurality">Plurality (First Past the Post)</option>
+          <option value="ranked">Ranked Choice Voting</option>
+          <option value="approval">Approval Voting</option>
+          <option value="score">Score Voting (1–5)</option>
+        </select>
+        <div class="form-row">
+          <div>
+            <label class="form-label">Registered Voters</label>
+            <input type="number" class="form-input" id="admin-voters" value="500" min="1" max="10000">
+          </div>
+          <div>
+            <label class="form-label">Max Selections</label>
+            <input type="number" class="form-input" id="admin-max-sel" value="1" min="1" max="20">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-input" id="admin-start" value="2024-12-01">
+          </div>
+          <div>
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-input" id="admin-end" value="2024-12-31">
+          </div>
+        </div>
+        <label class="form-label">Description</label>
+        <input type="text" class="form-input" id="admin-desc" placeholder="Brief description..." value="Annual presidential election for the student body">
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <button class="btn btn-primary btn-sm" onclick="createElection()">✚ Add Election</button>
+          <button class="btn btn-ghost btn-sm" onclick="updateElection()" id="admin-btn-update">💾 Update</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-title">👤 Manage Candidates</div>
+        <label class="form-label">Target Election</label>
+        <div style="display:flex; gap:0.5rem; margin-bottom: 0.5rem;">
+          <select class="form-input" id="admin-target-election" onchange="loadAdminCandidates()" style="margin:0; flex:1;"></select>
+          <button class="btn btn-danger btn-sm" onclick="deleteElection()">🗑️ Delete</button>
+        </div>
+        <div class="candidate-form-list" id="admin-candidates-list"></div>
+        <button class="btn btn-ghost btn-sm" onclick="addCandidateForm()" style="margin-bottom:1rem;">+ Add Candidate</button>
+        <button class="btn btn-cyan btn-sm" onclick="saveCandidates()">💾 Save Candidates</button>
+      </div>
+
+      <div class="admin-card" style="grid-column:span 2;" id="admin-card-voters">
+        <div class="admin-card-title">🧑‍🤝‍🧑 Voter Management</div>
+        <div style="display:flex;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;">
+          <button class="btn btn-ghost btn-sm" onclick="generateVoters()">🔄 Generate Voters</button>
+          <button class="btn btn-danger btn-sm" onclick="resetVotes()">🗑️ Reset All Votes</button>
+          <button class="btn btn-gold btn-sm" onclick="simulateVoting()">▶ Simulate Voting</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="voter-table" id="voter-table">
+            <thead>
+              <tr><th>#</th><th>Voter ID</th><th>Name</th><th>Email</th><th>Status</th><th>Voted For</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="voter-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-card" id="admin-card-controls">
+        <div class="admin-card-title">🎛️ Election Controls</div>
+        <label class="form-label">Select Election</label>
+        <select class="form-input" id="admin-control-election"></select>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.5rem;">
+          <button class="btn btn-cyan btn-sm" onclick="setStatus('live')" style="justify-content:center;">▶ Go Live</button>
+          <button class="btn btn-ghost btn-sm" onclick="setStatus('soon')" style="justify-content:center;">⏸ Pause</button>
+          <button class="btn btn-danger btn-sm" onclick="setStatus('closed')" style="justify-content:center;">■ Close</button>
+          <button class="btn btn-gold btn-sm" onclick="exportResults()" style="justify-content:center;">📤 Export</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteElection('admin-control-election')" style="grid-column: span 2; justify-content:center;">🗑️ Delete Election Completely</button>
+        </div>
+      </div>
+
+      <div class="admin-card" id="admin-card-settings">
+        <div class="admin-card-title">🔧 System Settings</div>
+        <label class="form-label">Allow Vote Changes</label>
+        <select class="form-input" id="setting-change">
+          <option>No — Once submitted, final</option>
+          <option>Yes — Within 5 minutes</option>
+        </select>
+        <label class="form-label">Anonymity Level</label>
+        <select class="form-input" id="setting-anon">
+          <option>Full Anonymity</option>
+          <option>Pseudonymous</option>
+          <option>Public Voting</option>
+        </select>
+        <label class="form-label">Results Visibility</label>
+        <select class="form-input" id="setting-results">
+          <option>Show after voting closes</option>
+          <option>Live real-time results</option>
+          <option>Hidden — Admin only</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" onclick="saveSettings()" style="margin-top:0.25rem;">💾 Save Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ ANALYTICS PAGE ════════════ -->
+<div class="page" id="page-analytics">
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <div class="section-title">📈 Analytics <span>Dashboard</span></div>
+    </div>
+    <div class="stats-row" style="padding:0;margin-bottom:1.5rem;">
+      <div class="stat-card" style="--accent-color:linear-gradient(90deg,#7c3aed,#a78bfa);"><div class="stat-label">Participation Rate</div><div class="stat-value" id="an-participation" style="color:var(--accent2)">0%</div><div class="stat-sub">↑ vs last election</div></div>
+      <div class="stat-card" style="--accent-color:linear-gradient(90deg,#06b6d4,#10b981);"><div class="stat-label">Avg. Decision Time</div><div class="stat-value" style="color:var(--cyan)">2.4m</div><div class="stat-sub">Per voter</div></div>
+      <div class="stat-card" style="--accent-color:linear-gradient(90deg,#f59e0b,#f97316);"><div class="stat-label">Peak Hour</div><div class="stat-value" style="color:var(--gold)">14:00</div><div class="stat-sub">Most votes cast</div></div>
+      <div class="stat-card" style="--accent-color:linear-gradient(90deg,#ec4899,#f43f5e);"><div class="stat-label">Spoiled Ballots</div><div class="stat-value" id="an-spoiled" style="color:var(--pink)">0</div><div class="stat-sub">Incomplete submissions</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+      <div class="admin-card">
+        <div class="admin-card-title">⏱️ Hourly Vote Distribution</div>
+        <div class="chart-wrap">
+          <div class="chart-bars" id="hourly-chart" style="height:140px;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted);margin-top:0.5rem;padding:0 4px;">
+          <span>8am</span><span>10am</span><span>12pm</span><span>2pm</span><span>4pm</span><span>6pm</span><span>8pm</span>
+        </div>
+      </div>
+      <div class="admin-card">
+        <div class="admin-card-title">📊 Turnout by Election</div>
+        <div id="turnout-pie" style="margin-top:0.5rem;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ WALLPAPER / THEMES PAGE ════════════ -->
+<div class="page" id="page-wallpaper">
+  <div class="section" style="padding-top:2rem;">
+    <div class="section-header">
+      <div class="section-title">🎨 Themes & <span>Wallpapers</span></div>
+      <p style="font-size:0.85rem;color:var(--muted);">Customize the animated background for each section of the app.</p>
+    </div>
+
+    <div style="margin-bottom:2rem;">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent2);margin-bottom:1rem;display:flex;align-items:center;gap:8px;">🎯 Select Section to Customize</div>
+      <div class="tabs" id="wp-section-tabs" style="width:auto;flex-wrap:wrap;">
+        <button class="tab active" onclick="selectWPSection('home',this)">🏠 Dashboard</button>
+        <button class="tab" onclick="selectWPSection('vote',this)">🗳️ Vote</button>
+        <button class="tab" onclick="selectWPSection('results',this)">📊 Results</button>
+        <button class="tab" onclick="selectWPSection('admin',this)">⚙️ Admin</button>
+        <button class="tab" onclick="selectWPSection('analytics',this)">📈 Analytics</button>
+      </div>
+    </div>
+
+    <div id="wp-section-label" style="font-size:0.9rem;color:var(--muted);margin-bottom:1.25rem;">
+      Editing wallpaper for: <strong style="color:var(--text)">Dashboard</strong>
+    </div>
+
+    <div class="wallpaper-page-grid" id="wp-presets"></div>
+
+    <div class="custom-color-controls" style="margin-top:1.5rem;">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent2);margin-bottom:1.25rem;">🎨 Custom Gradient Builder</div>
+      <div class="color-row">
+        <div class="color-picker-group">
+          <label>Color 1</label>
+          <input type="color" id="wp-color1" value="#0f0c29" oninput="previewCustomWP()">
+        </div>
+        <div class="color-picker-group">
+          <label>Color 2</label>
+          <input type="color" id="wp-color2" value="#302b63" oninput="previewCustomWP()">
+        </div>
+        <div class="color-picker-group">
+          <label>Color 3</label>
+          <input type="color" id="wp-color3" value="#24243e" oninput="previewCustomWP()">
+        </div>
+        <div class="color-picker-group">
+          <label>Direction</label>
+          <select class="form-input" id="wp-dir" onchange="previewCustomWP()" style="margin:0;width:130px;">
+            <option value="135deg">Diagonal ↗</option>
+            <option value="180deg">Top → Bottom ↓</option>
+            <option value="90deg">Left → Right →</option>
+            <option value="45deg">Diagonal ↙</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-sm" style="align-self:flex-end;" onclick="applyCustomWP()">✓ Apply</button>
+      </div>
+      <div id="wp-preview" style="width:100%;height:80px;border-radius:14px;margin-top:1rem;border:1px solid var(--border);transition:background 0.5s;"></div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent2);margin-bottom:1.25rem;">✨ Particle Effects</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <button class="btn btn-ghost btn-sm" onclick="setParticleMode('default')">✦ Stars</button>
+        <button class="btn btn-ghost btn-sm" onclick="setParticleMode('dense')">🌌 Dense Nebula</button>
+        <button class="btn btn-ghost btn-sm" onclick="setParticleMode('minimal')">· Minimal</button>
+        <button class="btn btn-ghost btn-sm" onclick="setParticleMode('none')">○ Off</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .shell -->
+
+<!-- CONFIRM MODAL -->
+<div class="modal-backdrop" id="vote-modal">
+  <div class="modal">
+    <div class="modal-title">Confirm Your Vote 🗳️</div>
+    <div class="modal-body" id="vote-modal-body">You are about to submit your vote. This action cannot be undone. Are you sure?</div>
+    <div style="margin-bottom:1.25rem;">
+      <label class="form-label">Your Name (optional)</label>
+      <input type="text" class="form-input" id="voter-name-input" placeholder="e.g. John Doe" style="margin-bottom:0.75rem;">
+      <label class="form-label">Your Email (optional)</label>
+      <input type="email" class="form-input" id="voter-email-input" placeholder="e.g. john@campus.edu" style="margin-bottom:0;">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('vote-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="submitVote()">Confirm & Submit ✓</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="/script.js"></script>
+</body>
+</html>

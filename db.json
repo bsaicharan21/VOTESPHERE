@@ -1,0 +1,433 @@
+{
+  "elections": [
+    {
+      "id": "e1",
+      "title": "Presidential Election 2024",
+      "type": "plurality",
+      "desc": "Annual presidential election for the student body",
+      "status": "live",
+      "registeredVoters": 500,
+      "maxSelections": 1,
+      "start": "2024-12-01",
+      "end": "2024-12-31",
+      "emoji": "🏛️",
+      "color": "#7c3aed",
+      "candidates": [
+        {
+          "id": "c1",
+          "name": "GOKUL",
+          "party": "HAIR MUNETRA KALAGAM",
+          "emoji": "🌟",
+          "color": "#7c3aed",
+          "bio": "Former VP, 12 years experience",
+          "votes": 10
+        },
+        {
+          "id": "c2",
+          "name": "ANAS",
+          "party": "Liberty Front",
+          "emoji": "⚡",
+          "color": "#06b6d4",
+          "bio": "Tech entrepreneur, innovation first",
+          "votes": 0
+        },
+        {
+          "id": "c3",
+          "name": "SANJAY",
+          "party": "Unity Coalition",
+          "emoji": "🌊",
+          "color": "#ec4899",
+          "bio": "Community organizer, grassroots",
+          "votes": 0
+        },
+        {
+          "id": "c1777103988242",
+          "name": "RAMADAAN",
+          "party": "ABD KATCHI",
+          "emoji": "🌊",
+          "color": "#f59e0b",
+          "bio": "",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "id": "e2",
+      "title": "Best Campus Project",
+      "type": "approval",
+      "desc": "Approve all projects you support — multiple selections allowed",
+      "status": "live",
+      "registeredVoters": 300,
+      "maxSelections": 10,
+      "start": "2024-12-05",
+      "end": "2024-12-25",
+      "emoji": "🎓",
+      "color": "#06b6d4",
+      "candidates": [
+        {
+          "id": "c5",
+          "name": "Solar Roof Initiative",
+          "party": "Green Tech",
+          "emoji": "☀️",
+          "color": "#f59e0b",
+          "bio": "Campus-wide solar panel installation",
+          "votes": 0
+        },
+        {
+          "id": "c6",
+          "name": "Mental Health App",
+          "party": "Student Wellness",
+          "emoji": "🧠",
+          "color": "#ec4899",
+          "bio": "24/7 anonymous support platform",
+          "votes": 0
+        },
+        {
+          "id": "c7",
+          "name": "Open Library 24h",
+          "party": "Academic Access",
+          "emoji": "📚",
+          "color": "#7c3aed",
+          "bio": "Round-the-clock library access",
+          "votes": 0
+        },
+        {
+          "id": "c8",
+          "name": "Urban Garden",
+          "party": "Sustainability",
+          "emoji": "🌱",
+          "color": "#10b981",
+          "bio": "Community garden and food program",
+          "votes": 0
+        },
+        {
+          "id": "c9",
+          "name": "Esports Arena",
+          "party": "Recreation",
+          "emoji": "🎮",
+          "color": "#f97316",
+          "bio": "State-of-the-art gaming center",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "id": "e3",
+      "title": "Faculty of the Year",
+      "type": "ranked",
+      "desc": "Rank your top 3 choices — ranked choice voting applied",
+      "status": "live",
+      "registeredVoters": 800,
+      "maxSelections": 3,
+      "start": "2024-12-10",
+      "end": "2024-12-28",
+      "emoji": "🏆",
+      "color": "#f59e0b",
+      "candidates": [
+        {
+          "id": "ca",
+          "name": "Dr. Elena Park",
+          "party": "Computer Science",
+          "emoji": "💻",
+          "color": "#7c3aed",
+          "bio": "AI & Machine Learning expert",
+          "votes": 0
+        },
+        {
+          "id": "cb",
+          "name": "Prof. William Hart",
+          "party": "Physics Dept.",
+          "emoji": "⚛️",
+          "color": "#06b6d4",
+          "bio": "Quantum computing pioneer",
+          "votes": 0
+        },
+        {
+          "id": "cc",
+          "name": "Dr. Aisha Nkosi",
+          "party": "Medical School",
+          "emoji": "🩺",
+          "color": "#ec4899",
+          "bio": "Groundbreaking oncology research",
+          "votes": 0
+        },
+        {
+          "id": "cd",
+          "name": "Prof. Raj Patel",
+          "party": "Engineering",
+          "emoji": "⚙️",
+          "color": "#f59e0b",
+          "bio": "Robotics and automation specialist",
+          "votes": 0
+        },
+        {
+          "id": "ce",
+          "name": "Dr. Laura Kim",
+          "party": "Economics",
+          "emoji": "📊",
+          "color": "#10b981",
+          "bio": "Behavioral economics innovator",
+          "votes": 0
+        }
+      ]
+    }
+  ],
+  "voters": [],
+  "voteLog": [
+    {
+      "id": "vl1777099741763",
+      "timestamp": "2026-04-25T06:49:01.763Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0001",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c4"
+      ],
+      "candidateNames": [
+        "KIM JONG UN"
+      ]
+    },
+    {
+      "id": "vl1777101785669",
+      "timestamp": "2026-04-25T07:23:05.669Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0002",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777101789173",
+      "timestamp": "2026-04-25T07:23:09.173Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0003",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777101790670",
+      "timestamp": "2026-04-25T07:23:10.670Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0004",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777101791543",
+      "timestamp": "2026-04-25T07:23:11.543Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0005",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777101792626",
+      "timestamp": "2026-04-25T07:23:12.626Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0006",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777101793295",
+      "timestamp": "2026-04-25T07:23:13.295Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0007",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777101795294",
+      "timestamp": "2026-04-25T07:23:15.294Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0008",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777103846215",
+      "timestamp": "2026-04-25T07:57:26.216Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0009",
+      "voterName": "drgerhrf",
+      "voterEmail": "dgedh@gmail.com",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777104036116",
+      "timestamp": "2026-04-25T08:00:36.116Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0010",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1777103988242"
+      ],
+      "candidateNames": [
+        "KIM JONG UN"
+      ]
+    },
+    {
+      "id": "vl1777104233452",
+      "timestamp": "2026-04-25T08:03:53.452Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0011",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1777103988242"
+      ],
+      "candidateNames": [
+        "KIM JONG UN"
+      ]
+    },
+    {
+      "id": "vl1777106110861",
+      "timestamp": "2026-04-25T08:35:10.861Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0012",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1777103988242"
+      ],
+      "candidateNames": [
+        "KIM JONG UN"
+      ]
+    },
+    {
+      "id": "vl1777132039133",
+      "timestamp": "2026-04-25T15:47:19.133Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0013",
+      "voterName": "Jdhd",
+      "voterEmail": "gamingalr44@gmail.com",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "ADOLF HITLER"
+      ]
+    },
+    {
+      "id": "vl1777277176908",
+      "timestamp": "2026-04-27T08:06:16.910Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0014",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "GOKUL"
+      ]
+    },
+    {
+      "id": "vl1777277490799",
+      "timestamp": "2026-04-27T08:11:30.799Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0015",
+      "voterName": "RAHMAN",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "GOKUL"
+      ]
+    },
+    {
+      "id": "vl1777366164483",
+      "timestamp": "2026-04-28T08:49:24.484Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0016",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "GOKUL"
+      ]
+    },
+    {
+      "id": "vl1777444343855",
+      "timestamp": "2026-04-29T06:32:23.856Z",
+      "electionId": "e1",
+      "electionTitle": "Presidential Election 2024",
+      "voterId": "V0017",
+      "voterName": "Anonymous",
+      "voterEmail": "",
+      "candidateIds": [
+        "c1"
+      ],
+      "candidateNames": [
+        "GOKUL"
+      ]
+    }
+  ]
+}
